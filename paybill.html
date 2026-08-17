@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Bill - Sohom Wallet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #0a0f1e; color: white; padding: 20px; }
+        .header { display: flex; align-items: center; margin-bottom: 25px; }
+        .back { font-size: 28px; text-decoration: none; color: #00d4ff; margin-right: 15px; }
+        h2 { color: #00d4ff; font-size: 22px; }
+        .bill-type { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .bill { background: #1a2333; padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; }
+        input { width: 100%; padding: 16px; margin: 15px 0; background: #1a2333; border: 1px solid #2a3342; border-radius: 12px; color: white; font-size: 16px; }
+        .pay-btn { width: 100%; padding: 16px; background: #00d4ff; color: black; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; margin-top: 25px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <h2>Pay a Bill</h2>
+    </div>
+    <div class="bill-type">
+        <div class="bill">💡 Electricity</div>
+        <div class="bill">🔥 LPG Gas</div>
+        <div class="bill">🛣️ Fastag</div>
+        <div class="bill">📡 DTH</div>
+    </div>
+    <input type="text" placeholder="Enter Consumer Number">
+    <button class="pay-btn">Fetch Bill & Pay</button>
+</body>
+</html>
