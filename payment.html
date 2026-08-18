@@ -48,14 +48,32 @@
         <div class="upi-icon">🔵</div>
         <div><b>Google Pay</b></div>
     </div>
+<script>
+    // URL theke dam, operator, plan niye asbe
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById('amount').innerText = urlParams.get('amount');
+    document.getElementById('operator').innerText = urlParams.get('operator');
+    document.getElementById('plan').innerText = urlParams.get('plan');
 
-    <button class="pay-btn" onclick="payNow()">Pay Now</button>
+<script>
+function upiPay() {
+    let amount = document.getElementById('amount').innerText;
+    let upiID = "test@upi"; // eta diye test korle app khulbe kintu taka katbe na
+    let name = "Sohom Wallet";
+    let url = `upi://pay?pa=${upiID}&pn=${name}&am=${amount}&cu=INR&tn=Mobile Recharge`;
+    
+    // PhonePe, GPay app khule jabe
+    window.location.href = url;
+    
+    // 3 sec por home e ferot asbe
+    setTimeout(() => {
+        alert("Payment request sent! 🎉\nRecharge hobe 2 min e");
+        window.location.href = "index.html";
+    }, 3000);
+}
+</script>
+    <button class="pay-btn" onclick="upiPay()">Pay Now</button>
 
     <script>
-        function payNow() {
-            alert("Payment Successful! 🎉\nRecharge will be done in 30 seconds");
-            window.location.href = "index.html";
-        }
-    </script>
 </body>
                        </html>
