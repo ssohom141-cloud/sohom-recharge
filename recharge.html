@@ -35,7 +35,7 @@
     <h3>Popular Plans</h3>
     <div class="plans" onclick="selectPlan(this, 299)">₹299 - 28 Days - 2GB/Day + 100 SMS</div>
     <div class="plans" onclick="selectPlan(this, 499)">₹499 - 84 Days - 3GB/Day + 100 SMS</div>
-    <button class="pay-btn" id="payBtn" onclick="window.location.href='payment.html'">Proceed to Pay ₹299</button>
+    <button class="pay-btn" id="payBtn" onclick="goToPayment()">Proceed to Pay ₹299</button>
 
     <script>
         function selectOp(el) {
@@ -47,6 +47,12 @@
             el.classList.add('active');
             document.getElementById('payBtn').innerText = `Proceed to Pay ₹${price}`;
         }
+        function goToPayment() {
+    let amount = document.getElementById('payBtn').innerText.replace('Proceed to Pay ₹', '');
+    let operator = document.querySelector('.op.active') ? document.querySelector('.op.active').innerText : 'Jio';
+    let planText = document.querySelector('.plans.active') ? document.querySelector('.plans.active').innerText : '₹299 - 28 Days';
+    window.location.href = `payment.html?amount=${amount}&operator=${operator}&plan=${planText}`;
+}
     </script>
 </body>
 </html>
