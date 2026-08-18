@@ -39,19 +39,30 @@
 
     <script>
         function selectOp(el) {
-            document.querySelectorAll('.op').forEach(op => op.classList.remove('active'));
-            el.classList.add('active');
-        }
-        function selectPlan(el, price) {
-            document.querySelectorAll('.plans').forEach(p => p.classList.remove('active'));
-            el.classList.add('active');
-            document.getElementById('payBtn').innerText = `Proceed to Pay ₹${price}`;
-        }
-        function goToPayment() {
-    let amount = document.getElementById('payBtn').innerText.replace('Proceed to Pay ₹', '');
-    let operator = document.querySelector('.op.active') ? document.querySelector('.op.active').innerText : 'Jio';
-    let planText = document.querySelector('.plans.active') ? document.querySelector('.plans.active').innerText : '₹299 - 28 Days';
-    window.location.href = `payment.html?amount=${amount}&operator=${operator}&plan=${planText}`;
+        let globalAmount = 299; // default
+let globalOperator = "Jio";
+
+function selectOperator(el, op) {
+    document.querySelectorAll('.op').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    globalOperator = op;
+}
+
+function selectPlan(el, price) {
+    document.querySelectorAll('.plans').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    globalAmount = price;
+    document.getElementById('payBtn').innerText = `Proceed to Pay ₹${price}`;
+}
+
+function goToPayment() {
+    let number = document.getElementById('number').value;
+    if(number.length < 10) {
+        alert("10 digit number dao bos");
+        return;
+    }
+    let planText = document.querySelector('.plans.active').innerText;
+    window.location.href = `payment.html?amount=${globalAmount}&operator=${globalOperator}&plan=${planText}&number=${number}`;
 }
     </script>
 </body>
