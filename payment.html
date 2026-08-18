@@ -26,50 +26,56 @@
     </div>
     
     <div class="summary">
-        <p>Mobile: 98XXXXXX10</p>
+        <p>Mobile: <span id="number">98XXXXXX10</span></p>
         <p>Operator: <span id="operator">Jio</span></p>
         <p>Plan: <span id="plan">₹299 - 28 Days</span></p>
         <h3>Total: ₹<span id="amount">299</span></h3>
     </div>
 
     <h3>Pay with UPI</h3>
-    <div class="upi-option">
-        <div class="upi-icon">📱</div>
-        <div>
-            <b>UPI ID</b><br>
-            <span style="color:#aaa;">Enter your UPI ID</span>
-        </div>
-    </div>
-    <div class="upi-option">
-        <div class="upi-icon">🟣</div>
-        <div><b>PhonePe</b></div>
-    </div>
-    <div class="upi-option">
-        <div class="upi-icon">🔵</div>
-        <div><b>Google Pay</b></div>
-    </div>
-<script>
-    // URL theke dam, operator, plan niye asbe
-    const urlParams = new URLSearchParams(window.location.search);
-    document.getElementById('amount').innerText = urlParams.get('amount');
-    document.getElementById('operator').innerText = urlParams.get('operator');
-    document.getElementById('plan').innerText = urlParams.get('plan');
 
+<div class="upi-option" onclick="payUPI()">
+    <div class="upi-icon">📱</div>
+    <div>
+        <b>UPI ID</b><br>
+        <span style="color:#aaa;">Enter your UPI ID</span>
+    </div>
+</div>
+
+<div class="upi-option" onclick="payPhonePe()">
+    <div class="upi-icon">🟣</div>
+    <div><b>PhonePe</b></div>
+</div>
+
+<div class="upi-option" onclick="payGPay()">
+    <div class="upi-icon">🔵</div>
+    <div><b>Google Pay</b></div>
+</div>
 <script>
-function upiPay() {
-    let amount = document.getElementById('amount').innerText;
-    let upiID = "test@upi"; // eta diye test korle app khulbe kintu taka katbe na
-    let name = "Sohom Wallet";
-    let url = `upi://pay?pa=${upiID}&pn=${name}&am=${amount}&cu=INR&tn=Mobile Recharge`;
-    
-    // PhonePe, GPay app khule jabe
-    window.location.href = url;
-    
-    // 3 sec por home e ferot asbe
-    setTimeout(() => {
-        alert("Payment request sent! 🎉\nRecharge hobe 2 min e");
-        window.location.href = "index.html";
-    }, 3000);
+    const urlParams = new URLSearchParams(window.location.search);
+    let amount = urlParams.get('amount');
+    let operator = urlParams.get('operator');
+    let plan = urlParams.get('plan');
+    let number = urlParams.get('number');
+
+    document.getElementById('amount').innerText = amount;
+    document.getElementById('operator').innerText = operator;
+    document.getElementById('plan').innerText = plan;
+    document.getElementById('number').innerText = number;
+
+    let upiID = "test@upi";
+
+    function payUPI() {
+        let url = `upi://pay?pa=${upiID}&pn=Sohom Wallet&am=${amount}&cu=INR&tn=Mobile Recharge`;
+        window.location.href = url;
+        setTimeout(() => {
+            alert("Payment request sent! 🎉");
+            window.location.href = "index.html";
+        }, 3000);
+    }
+    function payPhonePe() { payUPI(); }
+    function payGPay() { payUPI(); }
+</script>
 }
 </script>
     <button class="pay-btn" onclick="upiPay()">Pay Now</button>
